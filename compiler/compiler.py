@@ -32,6 +32,7 @@ def compile_source(text):
             pin = parse_pin(parts[1])
             mode = MODE_MAP[parts[2]]
             out += bytes([OP_PINMODE, pin, mode])
+            print(out)
 
         elif cmd == "WRITE":
             pin = parse_pin(parts[1])
@@ -59,6 +60,7 @@ def main():
         source = f.read()
 
     bytecode = compile_source(source)
+    print("Bytecode:", bytecode)
 
     with open(output_file, "wb") as f:
         f.write(bytecode)
